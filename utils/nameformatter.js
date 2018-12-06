@@ -4,11 +4,15 @@ function nameFormatter(config) {
   this.conf = config;
   
   this.format = function(address) {
-    const checksumAddress = util.toChecksumAddress(address);
-    if (this.conf.names[checksumAddress]) {
-      return this.conf.names[checksumAddress];
+    if (address) {
+      const checksumAddress = util.toChecksumAddress(address);
+      if (this.conf.names[checksumAddress]) {
+        return this.conf.names[checksumAddress];
+      } else {
+        return checksumAddress;
+      }
     } else {
-      return checksumAddress;
+      return address;
     }
   }
 }
