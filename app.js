@@ -17,11 +17,7 @@ var faucet = require('./routes/faucet');
 
 var args = require('yargs').argv;
 
-if (args.rpc) {
-  var config = new(require('./config.js'))(args.rpc);
-} else {
-  var config = new(require('./config.js'))("http://localhost:8545");
-}
+var config = new(require('./config.js'))(args.rpc || "http://localhost:8545");
 
 var levelup = require('levelup');
 var db = levelup('./data');
