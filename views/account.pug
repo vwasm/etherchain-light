@@ -125,4 +125,4 @@ block content
   if account.wast
     script.
       var wasm = !{JSON.stringify(account.code)}
-      wasm2wast(wasm)
+      document.querySelector('.wast').innerHTML = wasm2wast(wasm)
