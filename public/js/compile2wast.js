@@ -9,17 +9,19 @@ function hex2buf (hex) {
 // use wabt.js 1.0.0
 function wasm2wast (wasm) {
   var wasmBuf = hex2buf(wasm)
-  var pre = document.querySelector('.wast')
+  var ret
 
   try {
     var module = this.wabt.readWasm(wasmBuf, { readDebugNames: true })
     module.generateNames()
     module.applyNames()
     var result = module.toText({ foldExprs: true, inlineExport: true })
-    pre.innerHTML = result
+    ret = result
   } catch (e) {
-    pre.innerHTML = e.toString()
+    ret = e.toString()
   } finally {
     if (module) module.destroy()
   }
+
+  return ret
 }
